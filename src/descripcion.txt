@@ -1,0 +1,19 @@
+CAMBIOS REALIZADOS
+A)
+	-AÑADIDO A FICHA UN ATRIBUTO QUE SEA NUMMOVIMIENTOS
+	-AÑADIDO A FICHA METODOS GETNUMMOVIMIENTOS,SETNUMMOVIMIENTOS,INCRMOV,DECRMOV
+B)
+	-Creado la clase PanelMovimientos para representar los movimientos de los jugadores
+	-Añadido al panelIzquierdo un atributo de panelMovimientos
+	-Añadido a onPartidaTerminada un parámetro que es el turno, ya que puede ser que el ganador se distinto
+	 del que sea el turno.
+	-Implementados los métodos del observer en el panelMovimientos.
+	-Modificado vistaConsola para que aparezca el numero de movimiento de cada uno de los jugadores durante el juego
+	-Arregla un fallo que teníamos en la práctica y que nos dimos cuenta, si hace -g rv -u window, saltaba una excepcion,
+	 el problema era que creabamos antes el panelDerecho que el izquierdo, y entonces detectaba antes el cambioJugador que
+	 el cambio juego, dado excepcion al pintar el tablero de pistas.
+c)	-Añadido a la factoria un metodo creaReglas(maxMovimientos).
+	-Modificado siguienteTurno de reglas.
+	-Añadido método ningunoPuedePoner en reglas.
+	-Modificadas los constructores de las factorias.
+D)No me ha dado tiempo a escribir aqui los cambios, me ha faltado implementarlo para consola...
