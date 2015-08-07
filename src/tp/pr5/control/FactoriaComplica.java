@@ -6,7 +6,6 @@ import tp.pr5.logica.Ficha;
 import tp.pr5.logica.Movimiento;
 import tp.pr5.logica.MovimientoComplica;
 import tp.pr5.logica.ReglasComplica;
-import tp.pr5.logica.ReglasConecta4;
 import tp.pr5.logica.ReglasJuego;
 
 public class FactoriaComplica implements FactoriaTipoJuego{

@@ -80,15 +80,21 @@ public class PanelPartida extends JPanel implements Observer {
 	
 	private void initBtnPasa(){
 		GridBagConstraints constraints = new GridBagConstraints();
-		this.btnPasa = new JButton("PASA");
+		this.btnPasa = new JButton("Pasar Turno");
 		constraints.gridx = 0; 
 		constraints.gridy = 4;
-		constraints.gridwidth = 4;
+		constraints.gridwidth = 8;
 		constraints.gridheight = 3;
 		constraints.weightx = 0.1;
 		constraints.weighty	= 0.1;
 		constraints.fill = GridBagConstraints.BOTH;
 		this.add(btnPasa,constraints);
+		
+		ImageIcon iconoPasa    = null;
+		java.net.URL url_Pasar = null;
+		url_Pasar = getClass().getResource("imagenes/swing1.png");
+		iconoPasa = new ImageIcon(url_Pasar);
+		this.btnPasa.setIcon(iconoPasa);
 	}
 	/**
 	 * Se encarga de establecer

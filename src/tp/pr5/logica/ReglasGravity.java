@@ -51,12 +51,17 @@ public class ReglasGravity implements ReglasJuego {
 	@Override
 	public Ficha siguienteTurno(Ficha ultimoEnPoner,Tablero t) {
 		Ficha turnosiguiente = null;
+
 		switch (ultimoEnPoner) {
 		case BLANCA:
 			turnosiguiente = Ficha.NEGRA;
+			if(turnosiguiente.getNumMovimientos() == this.maxMov)
+				turnosiguiente = Ficha.BLANCA;
 			break;
 		case NEGRA:
 			turnosiguiente = Ficha.BLANCA;
+			if(turnosiguiente.getNumMovimientos() == this.maxMov)
+				turnosiguiente = Ficha.NEGRA;
 			break;
 		default:
 			break;

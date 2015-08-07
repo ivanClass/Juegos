@@ -30,7 +30,14 @@ public class FactoriaGravity implements FactoriaTipoJuego {
 	
 	@Override
 	public ReglasJuego creaReglas() {
-		return new ReglasGravity(this.ncols, this.nfilas);
+		ReglasJuego reglas;
+		
+		if(this.max == 0)
+			reglas = new ReglasGravity(this.ncols, this.nfilas);
+		else
+			reglas = new ReglasGravity(this.ncols, this.nfilas,this.max);
+		
+		return reglas;
 	}
 	
 	@Override

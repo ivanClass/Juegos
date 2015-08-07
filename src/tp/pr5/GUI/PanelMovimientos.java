@@ -75,6 +75,7 @@ public class PanelMovimientos extends JPanel implements Observer {
 		this.tBlancas = new JTextField();
 		this.tBlancas.setEditable(false);
 		this.tBlancas.setText("0");
+		this.tBlancas.setHorizontalAlignment(0);
 		GridBagConstraints constraints =  new GridBagConstraints();
 		constraints.gridx = 0; 
 		constraints.gridy = 1;
@@ -89,6 +90,7 @@ public class PanelMovimientos extends JPanel implements Observer {
 	private void inittNegras(){
 		this.tNegras = new JTextField();
 		this.tNegras.setText("0");
+		this.tNegras.setHorizontalAlignment(0);
 		this.tNegras.setEditable(false);
 		GridBagConstraints constraints =  new GridBagConstraints();
 		constraints.gridx = 4; 

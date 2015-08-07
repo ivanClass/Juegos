@@ -10,6 +10,7 @@ import tp.pr5.control.comandos.ComandoAyuda;
 import tp.pr5.control.comandos.ComandoCambioJugador;
 import tp.pr5.control.comandos.ComandoDeshacer;
 import tp.pr5.control.comandos.ComandoJugar;
+import tp.pr5.control.comandos.ComandoPasaTurno;
 import tp.pr5.control.comandos.ComandoPoner;
 import tp.pr5.control.comandos.ComandoReiniciar;
 import tp.pr5.logica.Ficha;
@@ -253,6 +254,11 @@ public class ControladorConsola{
 		};
 	}
 	
+	public void opcPasarTurno(){
+		this.partida.pasaTurno();
+		partida.refrescar();
+	}
+	
 	/**
 	 * Se encarga de solicitar los datos al usuario
 	 * 
@@ -277,5 +283,6 @@ public class ControladorConsola{
 		this.misComandos.add(new ComandoJugar(this, null));
 		this.misComandos.add(new ComandoPoner(this));
 		this.misComandos.add(new ComandoReiniciar(this));
+		this.misComandos.add(new ComandoPasaTurno(this));
 	}
 }

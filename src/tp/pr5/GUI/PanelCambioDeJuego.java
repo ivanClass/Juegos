@@ -145,6 +145,7 @@ public class PanelCambioDeJuego extends JPanel implements Observer{
 		
 		this.tMov = new JTextField();
 		this.tMov.setText("0");
+		this.tMov.setHorizontalAlignment(0);
 		constraints = new GridBagConstraints();
 		constraints.gridx = 1; 
 		constraints.gridy = 2;
@@ -158,9 +159,9 @@ public class PanelCambioDeJuego extends JPanel implements Observer{
 		this.btnCambiar = new JButton("Cambiar");
 		constraints = new GridBagConstraints();
 		
-		constraints.gridx = 1; 
+		constraints.gridx = 0; 
 		constraints.gridy = 3;
-		constraints.gridwidth = 1;
+		constraints.gridwidth = 4;
 		constraints.gridheight = 2;
 		constraints.weightx = 0.1;
 		constraints.weighty	= 0.1;
@@ -188,7 +189,9 @@ public class PanelCambioDeJuego extends JPanel implements Observer{
 	                Object selected = comboBox.getSelectedItem();
 	                if(selected == Juegos.GRAVITY){
 	                	textFieldfilas.setText("10");
+	                	textFieldfilas.setHorizontalAlignment(0);
 	                	textFieldcolum.setText("10");
+	                	textFieldcolum.setHorizontalAlignment(0);
 	                	paneldatos.setVisible(true);
 	                }
 	                else
