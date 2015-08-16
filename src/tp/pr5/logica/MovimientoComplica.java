@@ -66,4 +66,17 @@ public class MovimientoComplica extends Movimiento {
 			tablero.setCasilla(this.col, i,tablero.getCasilla(this.col, i+1));
 		}
 	}
+
+	@Override
+	public void redo(Tablero tab) {
+		if(this.fil != -1){
+			tab.setCasilla(this.col, this.fil, getJugador());
+		}
+		else{
+			this.fichaCae = tab.getCasilla(this.col, tab.getAlto());
+			desplazarFichasAbajo(tab);
+			tab.setCasilla(this.col, 1, getJugador());
+		}	
+		
+	}
 }

@@ -175,14 +175,34 @@ public class PanelMovimientos extends JPanel implements Observer {
 	}
 
 	@Override
-	public void onMovimientoStart(Ficha turno, boolean hayMas,
-			TableroInmutable pistas) {
+	public void onMovimientoStart(Ficha turno, boolean hayMasDeshacer,
+			boolean hayMasRehacer, TableroInmutable pistas) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onPasaTurno(Ficha turno) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onReDo(TableroInmutable tablero, Ficha turno, boolean hayMas) {
+		Integer k;
+		if(turno == Ficha.BLANCA){
+			k = Ficha.NEGRA.getNumMovimientos();
+			this.tNegras.setText(k.toString());
+		}
+		else{
+			k = Ficha.BLANCA.getNumMovimientos();
+			this.tBlancas.setText(k.toString());
+		}
+		
+	}
+
+	@Override
+	public void onReDoNotPossible(TableroInmutable tablero, Ficha turno) {
 		// TODO Auto-generated method stub
 		
 	}

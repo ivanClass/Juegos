@@ -2,6 +2,7 @@ package tp.pr5.logica;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Stack;
 
 import tp.pr5.GUI.Observer;
 import tp.pr5.control.FactoriaTipoJuego;
@@ -15,6 +16,7 @@ public class Partida{
 	private Ficha ganador;
 	
 	private Movimiento[] undoStack;
+	private Stack<Movimiento> redoStack;
 	private int numUndo;
 	
 	
@@ -40,6 +42,7 @@ public class Partida{
 		iniciarAtrib(reglas);
 		this.undoStack = new Movimiento [10];
 		this.obs =  new ArrayList<Observer>();
+		this.redoStack = new Stack<Movimiento>();
 	}
 	
 	/**
@@ -66,6 +69,7 @@ public class Partida{
 			if(!isTerminada()){
 				if(this.turno == mov.getJugador()){
 					mov.ejecutaMovimiento(this.tablero);
+					this.redoStack.clear();
 					this.ganador = this.reglas.hayGanador(mov, this.tablero);
 					this.turno.incrMov();
 					if(this.ganador != Ficha.VACIA || this.reglas.tablas(this.turno, this.tablero) || this.reglas.ningunoPuedePoner())
@@ -124,10 +128,12 @@ public class Partida{
 
 		if(numUndo != 0){
 			this.undoStack[numUndo - 1].undo(this.tablero);
+			this.redoStack.add(this.undoStack[numUndo - 1]);
 			this.turno = this.undoStack[numUndo -1].getJugador();
 
 			numUndo--;
 			this.turno.decrMov();
+			
 			for (Observer o: obs){
 				o.onUndo(this.tablero, this.turno, this.numUndo != 0);
 			}
@@ -143,6 +149,33 @@ public class Partida{
 		return ejecutado;
 	}
 	
+	public boolean redo(){
+		boolean ejecutado = true;
+		Ficha turnoAux;
+		
+		if(!this.redoStack.isEmpty()){
+			this.redoStack.peek().getJugador().incrMov();
+			this.undoStack[this.numUndo] = this.redoStack.peek();
+			this.numUndo++;
+			
+			this.turno = this.reglas.siguienteTurno(this.redoStack.peek().getJugador(), this.tablero);
+			turnoAux = this.redoStack.peek().getJugador();
+			this.redoStack.pop().redo(this.tablero);
+			
+			for (Observer o: obs){
+				o.onMovimientoEnd(this.tablero, turnoAux, this.turno);
+			}
+		}
+		else{
+			ejecutado = false;
+			for(Observer o: obs){
+				o.onReDoNotPossible(this.tablero,this.turno);
+			}
+			
+		}
+		
+		return ejecutado;
+	}
 	/**
 	 * Devuelve el turno actual,
 	 * Ficha.VACIA si la partida ha terminado
@@ -280,7 +313,7 @@ public class Partida{
 				pistas = Utilidades.indicarPosicionesPosiblesRv(this.turno, this.tablero);
 			}
 			for(Observer o: obs){
-				o.onMovimientoStart(this.turno, this.numUndo != 0, pistas);
+				o.onMovimientoStart(this.turno, this.numUndo != 0, !this.redoStack.isEmpty(), pistas);
 			}
 			this.turno.getModo().comenzar();			
 		}

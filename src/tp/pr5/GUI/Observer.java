@@ -85,10 +85,16 @@ public interface Observer {
 	 * Notifica a las vistas desde la partida que va a comenzar el turno 
 	 * de un jugador
 	 * @param turno
-	 * @param hayMas
+	 * @param hayMasDeshacer
+	 * @param hayMasRehacer TODO
 	 * @param pistas
 	 */
-	public void onMovimientoStart(Ficha turno,boolean hayMas,TableroInmutable pistas);
+	public void onMovimientoStart(Ficha turno,boolean hayMasDeshacer,boolean hayMasRehacer, TableroInmutable pistas);
 	
 	public void onPasaTurno(Ficha turno);
+	
+	public void onReDo(TableroInmutable tablero, Ficha turno, boolean hayMas);
+	
+	public void onReDoNotPossible(TableroInmutable tablero, Ficha turno);
+
 }

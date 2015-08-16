@@ -5,6 +5,7 @@ import tp.pr5.control.FactoriaConecta4;
 import tp.pr5.control.FactoriaGravity;
 import tp.pr5.control.FactoriaReversi;
 import tp.pr5.control.FactoriaTipoJuego;
+import tp.pr5.control.FactoriaTresRaya;
 
 public enum Juegos {
 	CONECTA4("Conecta 4"){
@@ -26,6 +27,14 @@ public enum Juegos {
 		public FactoriaTipoJuego crearFactoria(int filas, int columnas,int max){
 			return new FactoriaReversi(max);
 		}
+	},
+	TRESENRAYA("Tres en raya"){
+
+		@Override
+		public FactoriaTipoJuego crearFactoria(int filas, int columnas, int max) {
+			return new FactoriaTresRaya(max);
+		}
+		
 	};
 		
 	private String nombre;

@@ -243,7 +243,7 @@ public class PanelIzquierdo extends JPanel implements Observer {
 	}
 
 	@Override
-	public void onMovimientoStart(final Ficha turno,boolean hayMas,final TableroInmutable pistas){
+	public void onMovimientoStart(final Ficha turno,boolean hayMasDeshacer,boolean hayMasRehacer, final TableroInmutable pistas){
 		SwingUtilities.invokeLater(new Runnable() {
 			
 			@Override
@@ -267,6 +267,17 @@ public class PanelIzquierdo extends JPanel implements Observer {
 	@Override
 	public void onPasaTurno(Ficha turno) {
 		infoTurno.setText("Juegan " + turno.getNombre());		
+	}
+
+	@Override
+	public void onReDo(TableroInmutable tablero, Ficha turno, boolean hayMas) {
+		this.panelTablero.paintTablero(tablero);
+		this.infoTurno.setText("Juegan " + turno.getNombre());		
+	}
+
+	@Override
+	public void onReDoNotPossible(TableroInmutable tablero, Ficha turno) {
+		JOptionPane.showMessageDialog(null, "No se puede rehacer","Error...",JOptionPane.INFORMATION_MESSAGE);						
 	}
 	
 

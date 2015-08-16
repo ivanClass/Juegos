@@ -80,7 +80,7 @@ public class VistaConsola implements Observer{
 	}
 
 	@Override
-	public void onMovimientoStart(Ficha turno,boolean hayMas,TableroInmutable pistas){
+	public void onMovimientoStart(Ficha turno,boolean hayMasDeshacer,boolean hayMasRehacer, TableroInmutable pistas){
 		// TODO Auto-generated method stub
 		
 	}

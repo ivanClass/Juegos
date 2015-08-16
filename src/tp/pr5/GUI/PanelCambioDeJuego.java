@@ -75,6 +75,7 @@ public class PanelCambioDeJuego extends JPanel implements Observer{
 		this.comboBox.addItem(Juegos.COMPLICA);
 		this.comboBox.addItem(Juegos.GRAVITY);
 		this.comboBox.addItem(Juegos.REVERSI);
+		this.comboBox.addItem(Juegos.TRESENRAYA);
 
 		
 		GridBagConstraints constraints = new GridBagConstraints();
@@ -284,7 +285,7 @@ public class PanelCambioDeJuego extends JPanel implements Observer{
 
 
 	@Override
-	public void onMovimientoStart(Ficha turno,boolean hayMas,TableroInmutable pistas){
+	public void onMovimientoStart(Ficha turno,boolean hayMasDeshacer,boolean hayMasRehacer, TableroInmutable pistas){
 		// TODO Auto-generated method stub
 		
 	}
@@ -292,6 +293,20 @@ public class PanelCambioDeJuego extends JPanel implements Observer{
 
 	@Override
 	public void onPasaTurno(Ficha turno) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onReDo(TableroInmutable tablero, Ficha turno, boolean hayMas) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onReDoNotPossible(TableroInmutable tablero, Ficha turno) {
 		// TODO Auto-generated method stub
 		
 	}

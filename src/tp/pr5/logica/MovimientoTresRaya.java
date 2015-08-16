@@ -1,6 +1,6 @@
 package tp.pr5.logica;
 
-public class MovimientoConecta4 extends Movimiento {
+public class MovimientoTresRaya extends Movimiento {
 	private int col;
 	private int fil;
 	
@@ -9,7 +9,7 @@ public class MovimientoConecta4 extends Movimiento {
 	 * @param donde columna del movimiento
 	 * @param color	Ficha
 	 */	
-	public MovimientoConecta4(int donde,Ficha color){
+	public MovimientoTresRaya(int donde,Ficha color){
 		super(color);
 		this.col = donde;
 	}

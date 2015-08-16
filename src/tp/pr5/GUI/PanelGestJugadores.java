@@ -187,13 +187,25 @@ public class PanelGestJugadores extends JPanel implements Observer {
 	}
 
 	@Override
-	public void onMovimientoStart(Ficha turno,boolean hayMas,TableroInmutable pistas){
+	public void onMovimientoStart(Ficha turno,boolean hayMasDeshacer,boolean hayMasRehacer, TableroInmutable pistas){
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onPasaTurno(Ficha turno) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onReDo(TableroInmutable tablero, Ficha turno, boolean hayMas) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onReDoNotPossible(TableroInmutable tablero, Ficha turno) {
 		// TODO Auto-generated method stub
 		
 	}

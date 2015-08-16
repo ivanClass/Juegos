@@ -166,4 +166,9 @@ public class MovimientoGravity extends Movimiento {
 			}
 		}
 	}
+
+	@Override
+	public void redo(Tablero tab) {
+		tab.setCasilla(this.col, this.fil, getJugador());		
+	}
 }

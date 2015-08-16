@@ -32,6 +32,11 @@ public class ControladorGUI {
 		this.modelo.undo();
 		this.modelo.continuarPartida();
 	}
+	
+	public void rehacer(){
+		this.modelo.redo();
+		this.modelo.continuarPartida();
+	}
 
 	/**
 	 * Reinicia la partida (sin quitar el tablero y 

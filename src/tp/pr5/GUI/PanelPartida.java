@@ -25,6 +25,7 @@ public class PanelPartida extends JPanel implements Observer {
 	private JButton btnPasa;
 	
 	private ControladorGUI controlador;
+	private JButton btnRehacer;
 
 	public PanelPartida(ControladorGUI control) {
 		super();
@@ -62,6 +63,14 @@ public class PanelPartida extends JPanel implements Observer {
 				controlador.pasaTurno();
 			}
 		});
+		
+		this.btnRehacer.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controlador.rehacer();	
+			}
+		});
 	}
 
 	/**
@@ -75,15 +84,35 @@ public class PanelPartida extends JPanel implements Observer {
 		this.initBtnDeshacer();
 		this.initBtnReiniciar();
 		this.initBtnPasa();
+		this.initBtnRehacer();
 
 	}
 	
+	private void initBtnRehacer(){
+		GridBagConstraints constraints =  new GridBagConstraints();
+		this.btnRehacer =  new JButton("Rehacer");
+		constraints.gridx = 0; 
+		constraints.gridy = 4;
+		constraints.gridwidth = 4;
+		constraints.gridheight = 3;
+		constraints.weightx = 0.1;
+		constraints.weighty	= 0.1;
+		constraints.fill = GridBagConstraints.BOTH;
+		this.add(btnRehacer,constraints);
+		
+		ImageIcon iconoRehacer  = null;
+		java.net.URL url_Rehacer = null;
+		url_Rehacer = getClass().getResource("imagenes/redo13.png");
+		iconoRehacer = new ImageIcon(url_Rehacer);
+			
+		this.btnRehacer.setIcon(iconoRehacer);
+	}
 	private void initBtnPasa(){
 		GridBagConstraints constraints = new GridBagConstraints();
 		this.btnPasa = new JButton("Pasar Turno");
-		constraints.gridx = 0; 
+		constraints.gridx = 4; 
 		constraints.gridy = 4;
-		constraints.gridwidth = 8;
+		constraints.gridwidth = 4;
 		constraints.gridheight = 3;
 		constraints.weightx = 0.1;
 		constraints.weighty	= 0.1;
@@ -195,17 +224,27 @@ public class PanelPartida extends JPanel implements Observer {
 	}
 
 	@Override
-	public void onMovimientoStart(Ficha turno,boolean hayMas,TableroInmutable pistas){
+	public void onMovimientoStart(Ficha turno,boolean hayMasDeshacer,boolean hayMasRehacer, TableroInmutable pistas){
 
 		if(turno.getTipoTurno() == TipoTurno.AUTOMATICO){
 			btnDeshacer.setEnabled(false);
+			btnRehacer.setEnabled(false);
 			btnPasa.setEnabled(false);
 		}
 		else{
-			if(hayMas)
+			if(hayMasDeshacer){
 				btnDeshacer.setEnabled(true);
-			else
+			}
+			else{
 				btnDeshacer.setEnabled(false);
+			}
+			
+			if(hayMasRehacer){
+				btnRehacer.setEnabled(true);
+			}
+			else{
+				btnRehacer.setEnabled(false);
+			}
 			
 			btnPasa.setEnabled(true);
 
@@ -214,6 +253,21 @@ public class PanelPartida extends JPanel implements Observer {
 
 	@Override
 	public void onPasaTurno(Ficha turno) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onReDo(TableroInmutable tablero, Ficha turno, boolean hayMas) {
+		if(!hayMas){
+			this.btnRehacer.setEnabled(false);
+		}
+		else
+			this.btnRehacer.setEnabled(true);		
+	}
+
+	@Override
+	public void onReDoNotPossible(TableroInmutable tablero, Ficha turno) {
 		// TODO Auto-generated method stub
 		
 	}

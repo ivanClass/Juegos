@@ -40,5 +40,8 @@ public abstract class Movimiento {
 	 * @param tab	Tablero
 	 */
 	public abstract void undo(Tablero tab);
+	
+	
+	public abstract void redo(Tablero tab);
 
 }
