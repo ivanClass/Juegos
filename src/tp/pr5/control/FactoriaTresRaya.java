@@ -10,9 +10,13 @@ import tp.pr5.logica.ReglasTresRaya;
 
 public class FactoriaTresRaya implements FactoriaTipoJuego {
 	
+	private int nfilas;
+	private int ncols;
 	private int max;
 	
-	public FactoriaTresRaya(int maxMov){
+	public FactoriaTresRaya(int maxMov, int nfilas, int ncols){
+		this.ncols = ncols;
+		this.nfilas = nfilas;
 		this.max = maxMov;
 	}
 	
@@ -21,9 +25,9 @@ public class FactoriaTresRaya implements FactoriaTipoJuego {
 		ReglasJuego reglas;
 		
 		if(this.max == 0)
-			reglas = new ReglasTresRaya();
+			reglas = new ReglasTresRaya(ncols, nfilas);
 		else
-			reglas = new ReglasTresRaya(this.max);
+			reglas = new ReglasTresRaya(ncols, nfilas, max);
 		
 		return reglas;
 	}

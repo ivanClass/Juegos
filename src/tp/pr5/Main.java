@@ -1,5 +1,6 @@
 package tp.pr5;
 import java.util.Scanner;
+
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -17,6 +18,7 @@ import tp.pr5.control.FactoriaConecta4;
 import tp.pr5.control.FactoriaGravity;
 import tp.pr5.control.FactoriaReversi;
 import tp.pr5.control.FactoriaTipoJuego;
+import tp.pr5.control.FactoriaTresRaya;
 import tp.pr5.logica.Partida;
 
 /*************************************************************
@@ -85,7 +87,7 @@ public class Main {
 		options.addOption("h","help",false,"Muestra esta ayuda.");
 			
 		options.addOption(OptionBuilder .withLongOpt("game")
-										.withDescription("Tipo de juego (c4, co, gr, rv). Por defecto, c4.")
+										.withDescription("Tipo de juego (c4, co, gr, rv, tr). Por defecto, c4.")
 										.withArgName("game")
 										.hasArg()
 										.create("g"));
@@ -151,6 +153,29 @@ public class Main {
 							else{
 								String s = cmdLine.getOptionValue("n");
 								factoriaElegida = new FactoriaGravity(Integer.parseInt(ncols),Integer.parseInt(nfilas),Integer.parseInt(s));
+							}
+						}
+						else{
+							throw new ParseException("Faltan argumentos.");
+						}
+					}
+					else if(juego.equalsIgnoreCase("tr")){ //CAMBIAR ESTO DE FIL_dEFECTO,COL_DEFECTO -> NO ME GUSTA ASI
+						ncols = cmdLine.getOptionValue("x");
+						nfilas = cmdLine.getOptionValue("y");
+						if(nfilas == null && ncols == null){ //si no hay ni columnas ni filas en los argumentos
+							if(!cmdLine.hasOption("n"))
+								factoriaElegida = new FactoriaTresRaya(0,6,7);
+							else{
+								String s = cmdLine.getOptionValue("n");
+								factoriaElegida = new FactoriaTresRaya(Integer.parseInt(s),6,7);
+							}
+						}
+						else if(nfilas != null && ncols != null){
+							if(!cmdLine.hasOption("n"))
+								factoriaElegida = new FactoriaTresRaya(0,Integer.parseInt(nfilas),Integer.parseInt(ncols));
+							else{
+								String s = cmdLine.getOptionValue("n");
+								factoriaElegida = new FactoriaTresRaya(Integer.parseInt(s), Integer.parseInt(nfilas), Integer.parseInt(ncols));
 							}
 						}
 						else{

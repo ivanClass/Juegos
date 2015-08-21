@@ -90,4 +90,15 @@ public class VistaConsola implements Observer{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void onReDo(TableroInmutable tablero, Ficha turno, boolean hayMas) {
+		System.out.print(mostrarTextoInf(tablero, turno, false));	
+	}
+
+	@Override
+	public void onReDoNotPossible(TableroInmutable tablero, Ficha turno) {
+		System.err.println("Imposible rehacer.");
+		System.out.print(mostrarTextoInf(tablero, turno, false));
+	}
 }

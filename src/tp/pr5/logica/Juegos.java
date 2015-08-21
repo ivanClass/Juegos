@@ -32,7 +32,7 @@ public enum Juegos {
 
 		@Override
 		public FactoriaTipoJuego crearFactoria(int filas, int columnas, int max) {
-			return new FactoriaTresRaya(max);
+			return new FactoriaTresRaya(max, filas, columnas);
 		}
 		
 	};

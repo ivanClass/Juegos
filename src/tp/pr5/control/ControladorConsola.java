@@ -12,6 +12,7 @@ import tp.pr5.control.comandos.ComandoDeshacer;
 import tp.pr5.control.comandos.ComandoJugar;
 import tp.pr5.control.comandos.ComandoPasaTurno;
 import tp.pr5.control.comandos.ComandoPoner;
+import tp.pr5.control.comandos.ComandoRehacer;
 import tp.pr5.control.comandos.ComandoReiniciar;
 import tp.pr5.logica.Ficha;
 import tp.pr5.logica.MovimientoInvalido;
@@ -39,7 +40,6 @@ public class ControladorConsola{
 	
 	public void addObservador(Observer v) {
 		partida.addObserver(v);
-		
 	}
 		
 	public void run(){
@@ -85,6 +85,9 @@ public class ControladorConsola{
 		this.partida.undo();
 	}
 	
+	public void opcRehacer(){
+		this.partida.redo();
+	}
 	
 	/**
 	 * Dependiendo del array introducido creara un tipo de juego u otro
@@ -107,6 +110,10 @@ public class ControladorConsola{
 			}
 			else if (frase.length == 5 && frase[1].equalsIgnoreCase("gr")){ 
 				jugarGravity(frase);
+				error = false;
+			}
+			else if (frase.length == 5 && frase[1].equalsIgnoreCase("tr")){ 
+				jugarTresRaya(frase);
 				error = false;
 			}
 		}
@@ -219,7 +226,23 @@ public class ControladorConsola{
 			
 	}
 	
-	
+	/**
+	 * Realiza las operaciones necesarias para empezar
+	 * una partida del Gravity
+	 * 
+	 * @param frase String[]
+	 */
+	private void jugarTresRaya(String[] frase){
+		try{
+			Integer num1 = Integer.parseInt(frase[2]); // pasa de string a entero
+			Integer num2 = Integer.parseInt(frase[3]);
+			factoria = new FactoriaTresRaya(Integer.parseInt(frase[4]),num2,num1);
+		}
+		catch(Exception e){
+			System.err.println("No te entiendo.");
+		}
+			
+	}
 	/**
 	 * Inicia los dos jugadores,del tipo del juego
 	 * que estemos usando, como humanos y pone
@@ -284,5 +307,6 @@ public class ControladorConsola{
 		this.misComandos.add(new ComandoPoner(this));
 		this.misComandos.add(new ComandoReiniciar(this));
 		this.misComandos.add(new ComandoPasaTurno(this));
+		this.misComandos.add(new ComandoRehacer(this));
 	}
 }

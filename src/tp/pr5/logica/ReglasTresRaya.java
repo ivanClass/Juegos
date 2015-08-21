@@ -1,18 +1,23 @@
 package tp.pr5.logica;
 
 public class ReglasTresRaya implements ReglasJuego{
-	//CONSTANTES
-	private static final int NUM_FIL = 6;
-	private static final int NUM_COL = 7;
 	private static final int NFICHAS_EN_LINEA = 3;
+	
+	private  int numFilas;
+	private  int numCols;
+	
 	private int maxMovimientos;
 		
 	
-	public ReglasTresRaya(){
+	public ReglasTresRaya(int numCols, int numFilas){
+		this.numFilas = numFilas;
+		this.numCols = numCols;
 		this.maxMovimientos = 999;
 	}
 	
-	public ReglasTresRaya(int maxMov){
+	public ReglasTresRaya(int numCols, int numFilas,int maxMov){
+		this.numFilas = numFilas;
+		this.numCols = numCols;
 		this.maxMovimientos = maxMov;
 	}
 	
@@ -37,7 +42,7 @@ public class ReglasTresRaya implements ReglasJuego{
 	
 	@Override
 	public Tablero iniciaTablero() {
-		Tablero tab = new Tablero(NUM_COL,NUM_FIL);
+		Tablero tab = new Tablero(this.numCols, this.numFilas);
 		return tab;
 	}
 	

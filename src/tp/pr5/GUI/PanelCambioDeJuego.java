@@ -195,6 +195,13 @@ public class PanelCambioDeJuego extends JPanel implements Observer{
 	                	textFieldcolum.setHorizontalAlignment(0);
 	                	paneldatos.setVisible(true);
 	                }
+	                else if(selected == Juegos.TRESENRAYA){
+	                	textFieldfilas.setText("6");
+	                	textFieldfilas.setHorizontalAlignment(0);
+	                	textFieldcolum.setText("7");
+	                	textFieldcolum.setHorizontalAlignment(0);
+	                	paneldatos.setVisible(true);
+	                }
 	                else
 						paneldatos.setVisible(false);
 	                
@@ -213,7 +220,7 @@ public class PanelCambioDeJuego extends JPanel implements Observer{
 				int filas = 0, columnas = 0;int max = 0;
 				Juegos selected = (Juegos) comboBox.getSelectedItem();
 				 try{
-	               if(selected == Juegos.GRAVITY){
+	               if(selected == Juegos.GRAVITY || selected == Juegos.TRESENRAYA){
 	            	   filas = Integer.parseInt(textFieldfilas.getText());
 	            	   columnas= Integer.parseInt(textFieldcolum.getText());
 	               }
